@@ -22,26 +22,26 @@ pipeline {
         }
         
 
-  stage('Docker Build and Tag') {
-           steps {
+ // stage('Docker Build and Tag') {
+  //         steps {
               
-                bat 'docker build -t samplewebapp:latest .' 
-                bat 'docker tag samplewebapp vsmartlab/samplewebapp:latest'
+     //           bat 'docker build -t samplewebapp:latest .' 
+      //          bat 'docker tag samplewebapp vsmartlab/samplewebapp:latest'
                 //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
                
-          }
-        }
+       //   }
+     //   }
      
-  stage('Publish image to Docker Hub') {
+ // stage('Publish image to Docker Hub') {
           
-            steps {
-        withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-          bat  'docker push vsmartlab/samplewebapp:latest'
+          //  steps {
+       // withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
+       //   bat  'docker push vsmartlab/samplewebapp:latest'
         //  sh  'docker push nikhilnidhi/samplewebapp:$BUILD_NUMBER' 
-        }
+       // }
                   
-          }
-        }
+        //  }
+      //  }
      
       stage('Run Docker container on Jenkins Agent') {
              
