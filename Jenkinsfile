@@ -25,8 +25,8 @@ pipeline {
   stage('Docker Build and Tag') {
            steps {
               
-                sh 'docker build -t samplewebapp:latest .' 
-                sh 'docker tag samplewebapp vsmartlab/samplewebapp:latest'
+                bat 'docker build -t samplewebapp:latest .' 
+                bat 'docker tag samplewebapp vsmartlab/samplewebapp:latest'
                 //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
                
           }
@@ -36,7 +36,7 @@ pipeline {
           
             steps {
         withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-          sh  'docker push vsmartlab/samplewebapp:latest'
+          bat  'docker push vsmartlab/samplewebapp:latest'
         //  sh  'docker push nikhilnidhi/samplewebapp:$BUILD_NUMBER' 
         }
                   
@@ -47,7 +47,7 @@ pipeline {
              
             steps 
 			{
-                sh "docker run -d -p 8003:8080 vsmartlab/samplewebapp"
+                bat "docker run -d -p 8003:8080 vsmartlab/samplewebapp"
  
             }
         }
