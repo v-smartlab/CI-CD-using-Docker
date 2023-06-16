@@ -22,15 +22,15 @@ pipeline {
         }
         
 
- // stage('Docker Build and Tag') {
-  //         steps {
+  stage('Docker Build and Tag') {
+           steps {
               
-     //           bat 'docker build -t samplewebapp:latest .' 
+                bat 'docker build -t vsmartlab/samplewebapp .' 
       //          bat 'docker tag samplewebapp vsmartlab/samplewebapp:latest'
                 //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
                
-       //   }
-     //   }
+          }
+        }
      
  // stage('Publish image to Docker Hub') {
           
