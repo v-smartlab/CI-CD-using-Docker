@@ -47,7 +47,7 @@ pipeline {
              
             steps 
 			{
-                bat "docker run -d -p 8089:8080 --name samplewebapp-demo vsmartlab/samplewebapp"
+                bat "docker run -d -p 8082:8080 --name samplewebapp-demo vsmartlab/samplewebapp"
  
             }
         }
