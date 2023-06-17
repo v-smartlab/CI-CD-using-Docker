@@ -37,7 +37,7 @@ pipeline {
         steps {
        // withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
           //bat  'docker stop samplewebapp-demo || true && docker rm samplewebapp-demo || true'
-          bat  'docker stop $(docker ps -a -f name=samplewebapp-demo -q)'                  
+          bat  'docker stop samplewebapp-demo'                  
           }
         }
 /*
