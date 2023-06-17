@@ -17,12 +17,12 @@ pipeline {
            steps {
              
                 //sh 'mvn package'    
-		bat 'mvn package'
+		            bat 'mvn package'
           }
         }
         
 
-  stage('Docker Build and Tag') {
+  stage('Docker Build image') {
            steps {
               
                 bat 'docker build -t vsmartlab/samplewebapp .' 
@@ -32,25 +32,33 @@ pipeline {
           }
         }
      
- // stage('Publish image to Docker Hub') {
+  stage('Stop Docker container if it"s running') {
           
-          //  steps {
+        steps {
        // withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-       //   bat  'docker push vsmartlab/samplewebapp:latest'
-        //  sh  'docker push nikhilnidhi/samplewebapp:$BUILD_NUMBER' 
-       // }
-                  
-        //  }
-      //  }
-     
-      stage('Run Docker container on Jenkins Agent') {
-             
-            steps 
-			{
-                bat "docker run -d -p 8082:8080 --name samplewebapp-demo vsmartlab/samplewebapp"
- 
-            }
+          //bat  'docker stop samplewebapp-demo || true && docker rm samplewebapp-demo || true'
+          bat  'docker stop $(docker ps -a -f name=samplewebapp-demo -q)'                  
+          }
         }
+/*
+    stage('delete Docker contain if it"s exits') {
+          
+        steps {
+       // withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
+          //bat  'docker stop samplewebapp-demo || true && docker rm samplewebapp-demo || true'
+          bat  'docker rm $(docker ps -a -f name=samplewebapp-demo -q)'  
+          bat  'docker container ls -al | grep samplewebapp-demo && docker container rm -f samplewebapp-demo '                 
+          }
+        }
+      */
+  stage('Run Docker container on Jenkins Agent') {
+          
+        steps 
+        {
+            bat "docker run -d -p 8082:8080 --name samplewebapp-demo vsmartlab/samplewebapp"
+
+        }
+  }
  //stage('Run Docker container on remote hosts') {
              
             //steps {
