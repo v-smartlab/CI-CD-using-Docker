@@ -31,7 +31,7 @@ pipeline {
                
           }
         }
-     
+  /*   
   stage('Stop Docker container if it"s running') {
           
         steps {
@@ -40,7 +40,7 @@ pipeline {
           bat  'docker stop samplewebapp-demo'                  
           }
         }
-/*
+
     stage('delete Docker contain if it"s exits') {
           
         steps {
@@ -59,13 +59,14 @@ pipeline {
 
         }
   }
- //stage('Run Docker container on remote hosts') {
+ stage('Run Docker exec on remote hosts') {
              
-            //steps {
-            //    sh "docker -H ssh://jenkins@172.31.28.25 run -d -p 8003:8080 nikhilnidhi/samplewebapp"
+            steps {
+                //sh "docker -H ssh://jenkins@172.31.28.25 run -d -p 8003:8080 nikhilnidhi/samplewebapp"
+		  sh 'docker exec weblogic12c bash -c "source /u01/oracle/weblogic/wlserver/server/bin/setWLSEnv.sh ; java weblogic.Deployer -adminurl t3://localhost:7001 -user weblogic -password welcome1 -listapps"'
  
-            //}
-        //}
+            }
+        }
     }
 	}
     
