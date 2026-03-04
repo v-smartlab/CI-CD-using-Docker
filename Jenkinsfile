@@ -25,8 +25,8 @@ pipeline {
   stage('Docker Build image') {
            steps {
               
-                bat 'docker build -t vsmartlab/samplewebapp .' 
-      //          bat 'docker tag samplewebapp vsmartlab/samplewebapp:latest'
+         //       bat 'docker build -t vsmartlab/samplewebapp .' 
+                sh 'docker tag samplewebapp vsmartlab/samplewebapp:latest'
                 //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
                
           }
@@ -37,7 +37,7 @@ pipeline {
         steps {
        // withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
           //bat  'docker stop samplewebapp-demo || true && docker rm samplewebapp-demo || true'
-          bat  'docker stop samplewebapp-demo'                  
+          sh  'docker stop samplewebapp-demo'                  
           }
         }
 
@@ -46,8 +46,8 @@ pipeline {
         steps {
        // withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
           //bat  'docker stop samplewebapp-demo || true && docker rm samplewebapp-demo || true'
-          bat  'docker rm $(docker ps -a -f name=samplewebapp-demo -q)'  
-          bat  'docker container ls -al | grep samplewebapp-demo && docker container rm -f samplewebapp-demo '                 
+          sh  'docker rm $(docker ps -a -f name=samplewebapp-demo -q)'  
+          sh  'docker container ls -al | grep samplewebapp-demo && docker container rm -f samplewebapp-demo '                 
           }
         }
       */
@@ -55,7 +55,7 @@ pipeline {
           
         steps 
         {
-            bat "docker run -d -p 8082:8080 --name samplewebapp-demo vsmartlab/samplewebapp"
+            sh "docker run -d -p 8082:8080 --name samplewebapp-demo vsmartlab/samplewebapp"
 
         }
   }
