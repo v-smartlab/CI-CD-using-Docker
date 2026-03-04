@@ -25,8 +25,8 @@ pipeline {
   stage('Docker Build image') {
            steps {
               
-         //       bat 'docker build -t vsmartlab/samplewebapp .' 
-                sh 'docker tag samplewebapp vsmartlab/samplewebapp:latest'
+                sh 'docker build -t vsmartlab/samplewebapp .' 
+         //       sh 'docker tag samplewebapp vsmartlab/samplewebapp:latest'
                 //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
                
           }
