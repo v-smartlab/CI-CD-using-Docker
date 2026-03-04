@@ -59,6 +59,7 @@ pipeline {
 
         }
   }
+	 /*
  stage('Run Docker exec on remote hosts') {
              
             steps {
@@ -66,7 +67,7 @@ pipeline {
 		  sh 'docker exec weblogic12c bash -c "source /u01/oracle/weblogic/wlserver/server/bin/setWLSEnv.sh ; java weblogic.Deployer -adminurl t3://localhost:7001 -user weblogic -password welcome1 -listapps"'
  
             }
-        }
+        } */
     }
 	}
     
