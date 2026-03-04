@@ -16,12 +16,12 @@ pipeline {
 				   steps {
 					 	sh 'mvn package' 
 				  }
-			}	        
+			}	 /*       
 		  	stage('Docker Build image') {
 		           steps {		              
 		                sh 'docker build -t vsmartlab/samplewebapp .'                
 		          }
-		    }	
+		    }	*/
 		  	stage('Run Docker container on Jenkins Agent') {		          
 			        steps 
 			        {
